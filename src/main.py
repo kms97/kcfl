@@ -2,16 +2,22 @@ from player import Player
 from board import Board
 from card import Card
 import random
+import pygame
 
 board = Board()
+window =  pygame.display.set_mode((500,500))
+pygame.display.set_caption("Client")
+clientNumber = 0
 
-
+def redrawWindow():
+    window.fill((255,255,255))
+    pygame.diplay.update()
 
 def addPlayer(name):
     p = Player(name)
     board.addPlayer(p)
 
-def printCards(name):
+def printCardsofPlayer(name):
     p = board.getPlayerByName(name)
     if p is None:
         print("Player not found")
@@ -30,22 +36,29 @@ if __name__ == '__main__':
     board.getPlayerNames()
     board.randomiseDeck()
 
-    print("Round 1")
-    board.distributeCards()
-    printCards("Player 1")
-    printCards("Player 2")
-    board.resetCards()
-    print("Round 2")
-    board.distributeCards()
-    printCards("Player 1")
-    printCards("Player 2")
-    board.resetCards()
-    print("Round 3")
-    board.distributeCards()
-    printCards("Player 1")
-    printCards("Player 2")
-    board.resetCards()
-    
+    # print("Round 1")
+    # board.distributeCards()
+    # printCardsofPlayer("Player 1")
+    # printCardsofPlayer("Player 2")
+    # board.resetCards()
+    # print("Round 2")
+    # board.distributeCards()
+    # printCardsofPlayer("Player 1")
+    # printCardsofPlayer("Player 2")
+    # board.resetCards()
+    # print("Round 3")
+    # board.distributeCards()
+    # printCardsofPlayer("Player 1")
+    # printCardsofPlayer("Player 2")
+    # board.resetCards()
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+            
+        #redrawWindow()
 
 
     
